@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -13,7 +13,8 @@ export class ServerComponent implements OnInit {
 
   // Need to get the server ID here
   constructor(private serversService: ServersService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     // '+' is a method of casting a string (param) to a number
@@ -25,4 +26,12 @@ export class ServerComponent implements OnInit {
     })
   }
 
+  onEditServer() {
+    // Could also do navigate(['edit', this.server.id, 'edit']), but the method
+    // below is nicer and the more 'proper' way.
+    this.router.navigate(
+      ['edit'],
+      { relativeTo: this.route, queryParamsHandling: 'preserve' }
+    );
+  }
 }
