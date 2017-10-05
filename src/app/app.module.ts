@@ -23,7 +23,10 @@ const appRoutes: Routes = [
     { path: ':id', component: ServerComponent },
     { path: ':id/edit', component: EditServerComponent }
   ]},
+  { path: 'not-found', component: PageNotFoundComponent },
 
+  // Must be the *last* route, routes are parsed top-to-bottom
+  { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({
