@@ -23,7 +23,12 @@ export class UserComponent implements OnInit {
     /* Params is an *observable*, so gets called on each async update.
        Note that in ngOnInit() we're only *setting up* the subscribe function,
        which means it doesn't get called when ngOnInit() is run. This is why
-       we still need the this.route.snapshot.params above. */
+       we still need the this.route.snapshot.params above.
+
+       NB. Angular automatically handles unsubscribing from the params
+           observable when this component is destroyed, so we don't need to
+           (mentioning this because that isn't the case other other
+           observables). */
     this.route.params.subscribe((params: Params) => {
       this.user = {
         id: params['id'],
