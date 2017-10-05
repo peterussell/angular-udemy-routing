@@ -30,7 +30,7 @@ export class ServersComponent implements OnInit {
 
        NB. this is just for an example, this relative route will *break* the
            button's navigation (because there's no route servers/servers). */
-    this.router.navigate(['servers'], { relativeTo: this.route });
+    // this.router.navigate(['servers'], { relativeTo: this.route });
   }
 
 }
