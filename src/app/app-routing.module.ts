@@ -10,6 +10,7 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 import { AuthGuard } from './auth-guard.service';
 import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
@@ -28,10 +29,9 @@ const appRoutes: Routes = [
       { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard] }
     ]
   },
-  { path: 'not-found', component: PageNotFoundComponent },
-
-  // Must be the *last* route, routes are parsed top-to-bottom
-  { path: '**', redirectTo: 'not-found' }
+  // { path: 'not-found', component: ErrorPageComponent },
+  { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found' }},
+  { path: '**', redirectTo: 'not-found' } // Must be the *last* route (parsed top > bottom)
 ];
 
 @NgModule({
